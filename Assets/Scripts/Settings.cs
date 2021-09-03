@@ -6,7 +6,7 @@ public enum KeybindAction
 {
     Empty, 
     MoveForward, MoveBackward, MoveLeft, MoveRight, Jump,
-    ThrowTeleportDevice, Teleport, 
+    ThrowTeleportDevice, TeleportToDevice, 
     MenuButton, InteractionButton
 }
 
@@ -20,7 +20,7 @@ public class Settings : MonoBehaviour
     public static readonly Dictionary<KeybindAction, KeyCode> defaultKeys = new Dictionary<KeybindAction, KeyCode>()
     {
         {KeybindAction.MoveForward, KeyCode.W},       {KeybindAction.ThrowTeleportDevice, KeyCode.Mouse0},
-        {KeybindAction.MoveBackward, KeyCode.S},      {KeybindAction.Teleport, KeyCode.Mouse1},
+        {KeybindAction.MoveBackward, KeyCode.S},      {KeybindAction.TeleportToDevice, KeyCode.Mouse1},
         {KeybindAction.MoveLeft, KeyCode.A},          {KeybindAction.MenuButton, KeyCode.Escape},
         {KeybindAction.MoveRight, KeyCode.D},         {KeybindAction.InteractionButton, KeyCode.E},          
         {KeybindAction.Jump, KeyCode.Space}

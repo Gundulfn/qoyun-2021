@@ -6,7 +6,8 @@ public class PlayerInput : MonoBehaviour
     private PlayerMovement playerMovement;
     private CamRaycast camRaycast;
     private InteractionController interactionController;
-
+    private MouseClick mouseClick;
+    
     private const float ROTATION_SENSIVITY = 10f;
 
     private float mouseWheelRotation;
@@ -15,8 +16,10 @@ public class PlayerInput : MonoBehaviour
     void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
-        camRaycast = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CamRaycast>();
         interactionController = GetComponent<InteractionController>();
+        mouseClick = GetComponent<MouseClick>();
+
+        camRaycast = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CamRaycast>();
     }
 
     void Update()
@@ -39,6 +42,7 @@ public class PlayerInput : MonoBehaviour
         }
 
         HandleMovement();
+        HandleMouseClicks();
     }
 
     private void HandleMovement()
@@ -73,6 +77,18 @@ public class PlayerInput : MonoBehaviour
         if (jump)
         {
             playerMovement.Jump();
+        }
+    }
+
+    private void HandleMouseClicks()
+    {
+        if(Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.ThrowTeleportDevice)))
+        {
+            mouseClick.ThrowTeleportDevice();
+        }
+        else if(Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.TeleportToDevice)))
+        {
+            mouseClick.TeleportToDevice();
         }
     }
 }
