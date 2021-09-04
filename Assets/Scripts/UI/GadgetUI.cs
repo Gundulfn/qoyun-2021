@@ -27,7 +27,7 @@ public class GadgetUI: MonoBehaviour
         if(this.enabled)
         {
             anim[anim.clip.name].speed = -1;
-            anim[anim.clip.name].time = anim [anim.clip.name].length;
+            anim[anim.clip.name].time = anim[anim.clip.name].length;
             anim.Play();
         }
         else
@@ -81,7 +81,7 @@ public class GadgetUI: MonoBehaviour
         }
 
         UIHandler.instance.SetCursorState(this.enabled);
-        
+
         if(activateScan)
         {
             StartCoroutine(scan.WriteScanResult());

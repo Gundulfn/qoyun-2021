@@ -16,9 +16,6 @@ public class Countdown : MonoBehaviour
     void Start()
     {
         minute = DEFAULT_MINUTE;
-        second = DEFAULT_SECOND;
-
-        time = second;
     }
 
     void Update()
@@ -26,6 +23,7 @@ public class Countdown : MonoBehaviour
         if(minute < 0)
         {
             text.SetText("00:00");
+            GameController.instance.GameLose();
             return;    
         }
 

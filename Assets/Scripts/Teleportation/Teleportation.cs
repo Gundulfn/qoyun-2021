@@ -3,6 +3,7 @@ using UnityEngine;
 public class Teleportation: MonoBehaviour
 {
     public static Teleportation instance;
+    private bool isTeleportAllowed;
 
     void Start()
     {
@@ -11,6 +12,14 @@ public class Teleportation: MonoBehaviour
 
     public void TeleportToLocation(Vector3 pos, Transform teleporter)
     {
-        teleporter.position = pos;
+        if(isTeleportAllowed)
+        {
+            teleporter.position = pos;
+        }
+    }
+
+    public void DisableTeleport()
+    {
+        isTeleportAllowed = false;
     }
 }

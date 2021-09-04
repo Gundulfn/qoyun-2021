@@ -44,6 +44,9 @@ public class Player : MonoBehaviour
         private set;
     }
 
+    [SerializeField]
+    private Animation deathAnim;
+
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -59,7 +62,13 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
-
+        PausePlayer();
+        playerInput.enabled = false;
+        characterController.enabled = false;
+        playerMovement.enabled = false;
+        
+        deathAnim.gameObject.SetActive(true);
+        StartCoroutine(GameController.instance.RestartGame(deathAnim[deathAnim.clip.name].length));
     }
 
     // Pause/Unpause player movement and interaction
