@@ -3,6 +3,7 @@ using UnityEngine;
 public class UIHandler: MonoBehaviour
 {
     public static UIHandler instance;
+    public GameObject crosshairObj;
 
     [SerializeField]
     private GadgetUI gadgetUI;
@@ -15,26 +16,32 @@ public class UIHandler: MonoBehaviour
         SetCursorState();
     }
 
-    public void OnUIKeyDown(bool affectTime = false)
+    public void OnGadgetUIKeyDown()
     {
         gadgetUI.SetGadgetActivity();
-
-        //if gadgetUI is active, stop time
-        //else, continue time
-        if(affectTime)
-        {
-            Time.timeScale = (gadgetUI.enabled) ? 0 : 1;
-        }
+        crosshairObj.SetActive(!gadgetUI.enabled);
 
         SetCursorState();
     }
 
-    public void ShowEndButton()
+    public void OnMenuUIKeyDown()
+    {
+        OnGadgetUIKeyDown();
+        //open menuUi from gadgetUI
+    }
+
+    public void SetScanText()
+    {
+        OnGadgetUIKeyDown();
+        gadgetUI.ShowScanText();
+    }
+
+    public void NotifyGameEnd()
     {
         gadgetUI.enabled = true;
         SetCursorState();
 
-        gadgetUI.ShowEndButtonOnly();
+        gadgetUI.ShowEndButton();
     }
 
     public bool isGadgetActive()

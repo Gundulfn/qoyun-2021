@@ -97,11 +97,11 @@ public class PlayerInput : MonoBehaviour
         //else don't pause
         if(Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.GadgetUIButton)))
         {
-            UIHandler.instance.OnUIKeyDown();
+            UIHandler.instance.OnGadgetUIKeyDown();
         }
         else if(Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.MenuButton)))
         {
-            UIHandler.instance.OnUIKeyDown(true);
+            UIHandler.instance.OnMenuUIKeyDown();
         }
     }
 }

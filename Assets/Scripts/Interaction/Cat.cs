@@ -17,8 +17,8 @@ public class Cat: MonoBehaviour, Interactable
     {
         if(isCatDead)
         {
-            //Scan
-            Debug.Log("Connected to Gate " + connectedGateNo);
+            Scan.info = connectedGateNo;
+            UIHandler.instance.SetScanText();
         }
         else
         {
