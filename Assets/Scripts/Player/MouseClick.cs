@@ -10,12 +10,15 @@ public class MouseClick: MonoBehaviour
 
     public void ThrowTeleportDevice()
     {
-        if(spawnedTeleportDeviceObj)
+        if(Teleportation.instance.canTeleport)
         {
-            Destroy(spawnedTeleportDeviceObj);
-        }
+            if(spawnedTeleportDeviceObj)
+            {
+                Destroy(spawnedTeleportDeviceObj);
+            }
 
-        spawnedTeleportDeviceObj = Instantiate(teleportDevicePrefab, deviceLaunchPlaceObj.transform.position, deviceLaunchPlaceObj.transform.rotation);
+            spawnedTeleportDeviceObj = Instantiate(teleportDevicePrefab, deviceLaunchPlaceObj.transform.position, deviceLaunchPlaceObj.transform.rotation);
+        }
     }
 
     public void TeleportToDevice()
