@@ -42,6 +42,7 @@ public class InteractionController : MonoBehaviour
             if(interactable != null && interactable.IsInteractable())
             {
                 interactable.Interact();
+                interactionText.SetText("");
             }
         }
     }

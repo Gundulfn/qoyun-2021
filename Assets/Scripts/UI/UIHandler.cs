@@ -49,7 +49,6 @@ public class UIHandler: MonoBehaviour
 
     private void SetCursorState()
     {
-        Debug.Log(gadgetUI.enabled);
         Cursor.visible = gadgetUI.enabled;
 
         if (Cursor.visible)

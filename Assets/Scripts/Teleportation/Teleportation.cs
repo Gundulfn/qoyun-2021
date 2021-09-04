@@ -12,6 +12,5 @@ public class Teleportation: MonoBehaviour
     public void TeleportToLocation(Vector3 pos, Transform teleporter)
     {
         teleporter.position = pos;
-        Debug.Log(pos);
     }
 }

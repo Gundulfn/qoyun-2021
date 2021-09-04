@@ -18,11 +18,11 @@ public class Scan: MonoBehaviour
         }
 
         string result = "Scanning";
-
+        
         for(int i = 0; i < 3; i++)
         {
-            text.SetText(result);
             result += ".";
+            text.SetText(result);
             yield return new WaitForSeconds(.5f);
         }
 
