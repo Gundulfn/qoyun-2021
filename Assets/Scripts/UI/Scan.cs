@@ -26,6 +26,7 @@ public class Scan: MonoBehaviour
             yield return new WaitForSeconds(.5f);
         }
 
+        yield return new WaitForSeconds(1f);
         result += "\nConnected with Gate " + info;
         text.SetText(result);
 

@@ -38,9 +38,7 @@ public class UIHandler: MonoBehaviour
 
     public void NotifyGameEnd()
     {
-        gadgetUI.enabled = true;
-        SetCursorState();
-
+        OnGadgetUIKeyDown();
         gadgetUI.ShowEndButton();
     }
 
@@ -51,6 +49,7 @@ public class UIHandler: MonoBehaviour
 
     private void SetCursorState()
     {
+        Debug.Log(gadgetUI.enabled);
         Cursor.visible = gadgetUI.enabled;
 
         if (Cursor.visible)
