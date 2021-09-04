@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 using System.Collections.Generic;
+
+/*
+    Note: This script made for custom key settings, it will be add to the game later
+*/
 
 public enum KeybindAction
 {
     Empty, 
     MoveForward, MoveBackward, MoveLeft, MoveRight, Jump,
     ThrowTeleportDevice, TeleportToDevice, 
-    MenuButton, InteractionButton
+    GadgetUIButton, MenuButton,
+    Interact
 }
 
 public enum AnalogValue
@@ -21,9 +25,9 @@ public class Settings : MonoBehaviour
     {
         {KeybindAction.MoveForward, KeyCode.W},       {KeybindAction.ThrowTeleportDevice, KeyCode.Mouse0},
         {KeybindAction.MoveBackward, KeyCode.S},      {KeybindAction.TeleportToDevice, KeyCode.Mouse1},
-        {KeybindAction.MoveLeft, KeyCode.A},          {KeybindAction.MenuButton, KeyCode.Escape},
-        {KeybindAction.MoveRight, KeyCode.D},         {KeybindAction.InteractionButton, KeyCode.E},          
-        {KeybindAction.Jump, KeyCode.Space}
+        {KeybindAction.MoveLeft, KeyCode.A},          {KeybindAction.GadgetUIButton, KeyCode.Q},
+        {KeybindAction.MoveRight, KeyCode.D},         {KeybindAction.MenuButton, KeyCode.Escape},          
+        {KeybindAction.Jump, KeyCode.Space},          {KeybindAction.Interact, KeyCode.E}
     };
 
     private static readonly Dictionary<AnalogValue, float> defaultAnalogValues = new Dictionary<AnalogValue, float>()

@@ -23,7 +23,7 @@ public class MouseClick: MonoBehaviour
         if(spawnedTeleportDeviceObj)
         {
             teleportPos = spawnedTeleportDeviceObj.transform.position + Vector3.up;
-            transform.position = teleportPos;
+            Teleportation.instance.TeleportToLocation(teleportPos, transform);
             
             spawnedTeleportDeviceObj.GetComponent<TeleportDevice>().DestroyDevice();
             spawnedTeleportDeviceObj = null;

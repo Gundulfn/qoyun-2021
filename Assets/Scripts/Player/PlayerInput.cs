@@ -2,42 +2,41 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
-    // Player scripts for using actions according to inputs
-    private PlayerMovement playerMovement;
-    private CamRaycast camRaycast;
-    private InteractionController interactionController;
-    private MouseClick mouseClick;
+    private Player player;
     
     private const float ROTATION_SENSIVITY = 10f;
-
     private float mouseWheelRotation;
-    private bool clickAgainToUseTool;
 
     void Start()
     {
-        playerMovement = GetComponent<PlayerMovement>();
-        interactionController = GetComponent<InteractionController>();
-        mouseClick = GetComponent<MouseClick>();
-
-        camRaycast = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CamRaycast>();
+        player = GetComponent<Player>();
     }
 
     void Update()
     {
-        // if (GameUIHandler.instance.isAnyUIActive())
-        //     return;
+        HandleUIKeys();
 
+        if (UIHandler.instance.isGadgetActive())
+        {
+            player.PausePlayer();
+            return;
+        }
+        else
+        {
+            player.UnpausePlayer();
+        }
+        
         // In-game inputs
         if (Input.mouseScrollDelta.y != 0)
         {
             mouseWheelRotation += Input.mouseScrollDelta.y * ROTATION_SENSIVITY;
         }
 
-        if (camRaycast.isHit())
+        if (player.camRaycast.isHit())
         {
-            if (Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.InteractionButton)))
+            if (Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.Interact)))
             {
-                interactionController.HandleInteraction();
+                player.interactionController.HandleInteraction();
             }
         }
 
@@ -72,23 +71,37 @@ public class PlayerInput : MonoBehaviour
 
         bool jump = Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.Jump));
 
-        playerMovement.Move(x, z);
+        player.playerMovement.Move(x, z);
 
         if (jump)
         {
-            playerMovement.Jump();
+            player.playerMovement.Jump();
         }
     }
 
     private void HandleMouseClicks()
     {
-        if(Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.ThrowTeleportDevice)))
+        if(Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.ThrowTeleportDevice))) // Left click
         {
-            mouseClick.ThrowTeleportDevice();
+            player.mouseClick.ThrowTeleportDevice();
         }
-        else if(Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.TeleportToDevice)))
+        else if(Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.TeleportToDevice))) // Right click
         {
-            mouseClick.TeleportToDevice();
+            player.mouseClick.TeleportToDevice();
+        }
+    }
+
+    private void HandleUIKeys()
+    {
+        //if player opens gadget for menu, pause the game
+        //else don't pause
+        if(Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.GadgetUIButton)))
+        {
+            UIHandler.instance.OnUIKeyDown();
+        }
+        else if(Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.MenuButton)))
+        {
+            UIHandler.instance.OnUIKeyDown(true);
         }
     }
 }

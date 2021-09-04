@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     private float groundDistance = 0.4f;
     private bool isGrounded = true;
-
+    
     public void Move(float x, float z)
     {
         Vector3 movement = transform.right * x + transform.forward * z;
