@@ -3,7 +3,7 @@ using UnityEngine;
 public class Teleportation: MonoBehaviour
 {
     public static Teleportation instance;
-    private bool isTeleportAllowed;
+    private bool isTeleportAllowed = true;
 
     void Start()
     {
