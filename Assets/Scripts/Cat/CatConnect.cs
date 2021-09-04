@@ -9,7 +9,8 @@ public class CatConnect: MonoBehaviour
     [SerializeField]
     private Cat[] cats;
 
-    //add quantum gates(points) at universes to teleport 
+    //add quantum gates(points) at universes to teleport, 
+    //they are attached directly to QuantumGate scripts right now
 
     void Start()
     {

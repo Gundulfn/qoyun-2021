@@ -13,15 +13,13 @@ public class UIHandler: MonoBehaviour
         instance = this;
         gadgetUI.enabled = false;
 
-        SetCursorState();
+        SetCursorState(false);
     }
 
     public void OnGadgetUIKeyDown()
     {
         gadgetUI.SetGadgetActivity();
         crosshairObj.SetActive(!gadgetUI.enabled);
-
-        SetCursorState();
     }
 
     public void OnMenuUIKeyDown()
@@ -47,9 +45,9 @@ public class UIHandler: MonoBehaviour
         return gadgetUI.enabled;
     }
 
-    private void SetCursorState()
+    public void SetCursorState(bool isUIActive)
     {
-        Cursor.visible = gadgetUI.enabled;
+        Cursor.visible = isUIActive;
 
         if (Cursor.visible)
         {
