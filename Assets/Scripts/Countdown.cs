@@ -3,6 +3,12 @@ using TMPro;
 
 public class Countdown : MonoBehaviour
 {
+    public static bool countdowmStarted
+    {
+        get;
+        private set;
+    }
+
     private const int DEFAULT_MINUTE = 10;
     private const int DEFAULT_SECOND = 60;
     
@@ -12,39 +18,48 @@ public class Countdown : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI text;
-
+ 
     void Start()
     {
         minute = DEFAULT_MINUTE;
+        countdowmStarted = false;
     }
 
     void Update()
     {
-        if(minute < 0)
+        if(countdowmStarted)
         {
-            text.SetText("00:00");
-            GameController.instance.GameLose();
-            return;    
-        }
-
-        if((int)time != second)
-        {
-            if(time <= 0)
+            if(minute < 0)
             {
-                time = DEFAULT_SECOND;
-                second = DEFAULT_SECOND;
-
-                minute--;
-            }
-            else
-            {
-                second = (int)time;
+                text.SetText("00:00");
+                GameController.instance.GameLose();
+                return;    
             }
 
-            clockText = ((minute < 10)? "0" : "") + minute + ":" + ((second < 10)? "0" : "") + second;
-            text.SetText(clockText);
-        }
+            if((int)time != second)
+            {
+                if(time <= 0)
+                {
+                    time = DEFAULT_SECOND;
+                    second = DEFAULT_SECOND;
 
-        time -= Time.deltaTime;
+                    minute--;
+                }
+                else
+                {
+                    second = (int)time;
+                }
+
+                clockText = ((minute < 10)? "0" : "") + minute + ":" + ((second < 10)? "0" : "") + second;
+                text.SetText(clockText);
+            }
+
+            time -= Time.deltaTime;
+        }
+    }
+
+    public static void StartCountdown()
+    {
+        countdowmStarted = true;
     }
 }

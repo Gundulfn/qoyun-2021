@@ -22,12 +22,6 @@ public class UIHandler: MonoBehaviour
         crosshairObj.SetActive(!gadgetUI.enabled);
     }
 
-    public void OnMenuUIKeyDown()
-    {
-        OnGadgetUIKeyDown();
-        //open menuUi from gadgetUI
-    }
-
     public void SetScanText()
     {
         OnGadgetUIKeyDown();

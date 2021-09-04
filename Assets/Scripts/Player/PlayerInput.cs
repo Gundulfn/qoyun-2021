@@ -14,7 +14,10 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
-        HandleUIKeys();
+        if(Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.GadgetUIButton)))
+        {
+            UIHandler.instance.OnGadgetUIKeyDown();
+        }
 
         if (UIHandler.instance.isGadgetActive())
         {
@@ -88,20 +91,6 @@ public class PlayerInput : MonoBehaviour
         else if(Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.TeleportToDevice))) // Right click
         {
             player.mouseClick.TeleportToDevice();
-        }
-    }
-
-    private void HandleUIKeys()
-    {
-        //if player opens gadget for menu, pause the game
-        //else don't pause
-        if(Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.GadgetUIButton)))
-        {
-            UIHandler.instance.OnGadgetUIKeyDown();
-        }
-        else if(Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.MenuButton)))
-        {
-            UIHandler.instance.OnMenuUIKeyDown();
         }
     }
 }

@@ -25,8 +25,16 @@ public class Teleportation: MonoBehaviour
     public void TeleportToLocation(Vector3 pos, Transform teleporter)
     {
         if(canTeleport)
-        {
+        {         
+            //If countdowm hasn't started, it means it's player's first teleportation
+            if(!Countdown.countdowmStarted)
+            {
+                Countdown.StartCountdown();
+            }
+
             teleportEffectAnim.Play();
+
+            // Saving for late teleport, look "Teleport" function 
             this.teleporter = teleporter;
             this.pos = pos;
 
@@ -34,6 +42,8 @@ public class Teleportation: MonoBehaviour
         }
     }
     
+    // "TeleportEffect" Animation Functions
+    // To teleport after flashing effect at Animation
     public void Teleport()
     {
         teleporter.position = pos;

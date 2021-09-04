@@ -8,7 +8,7 @@ public class GameController: MonoBehaviour
     
     [SerializeField]
     private Animation timeOutLoseAnim;
-
+    
     void Start()
     {
         instance = this;
