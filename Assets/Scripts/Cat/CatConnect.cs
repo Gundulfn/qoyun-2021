@@ -9,6 +9,8 @@ public class CatConnect: MonoBehaviour
     [SerializeField]
     private Cat[] cats;
 
+    //add quantum gates(points) at universes to teleport 
+
     void Start()
     {
         if(cats.Length == 0)

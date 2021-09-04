@@ -17,7 +17,6 @@ public class UIHandler: MonoBehaviour
 
     public void OnUIKeyDown(bool affectTime = false)
     {
-        gadgetUI.enabled = !gadgetUI.enabled;
         gadgetUI.SetGadgetActivity();
 
         //if gadgetUI is active, stop time
