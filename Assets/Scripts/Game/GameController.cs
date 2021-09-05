@@ -5,7 +5,8 @@ using UnityEngine.SceneManagement;
 public class GameController: MonoBehaviour
 {
     public static GameController instance;
-    
+    public bool isItfirstGame = true; 
+
     [SerializeField]
     private Animation timeOutLoseAnim;
     
@@ -17,6 +18,8 @@ public class GameController: MonoBehaviour
     public IEnumerator RestartGame(float time)
     {
         yield return new WaitForSeconds(time);
+
+        isItfirstGame = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 

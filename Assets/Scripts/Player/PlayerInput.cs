@@ -19,6 +19,16 @@ public class PlayerInput : MonoBehaviour
             UIHandler.instance.OnGadgetUIKeyDown();
         }
 
+        if(Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.MuteAudio)))
+        {
+            SoundController.SetSoundMuteState();
+        }
+
+        if(Input.GetKeyDown(Settings.GetKeyCode(KeybindAction.MuteSpeech)))
+        {
+            SpeechController.instance.SetSpeechMuteState();
+        }
+
         if (UIHandler.instance.isGadgetActive())
         {
             player.PausePlayer();

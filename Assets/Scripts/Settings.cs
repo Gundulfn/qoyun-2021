@@ -10,7 +10,8 @@ public enum KeybindAction
     Empty, 
     MoveForward, MoveBackward, MoveLeft, MoveRight, Jump,
     ThrowTeleportDevice, TeleportToDevice, 
-    GadgetUIButton, MenuButton,
+    GadgetUIButton, MenuButton, 
+    MuteAudio, MuteSpeech,
     Interact
 }
 
@@ -27,7 +28,8 @@ public class Settings : MonoBehaviour
         {KeybindAction.MoveBackward, KeyCode.S},      {KeybindAction.TeleportToDevice, KeyCode.Mouse1},
         {KeybindAction.MoveLeft, KeyCode.A},          {KeybindAction.GadgetUIButton, KeyCode.Q},
         {KeybindAction.MoveRight, KeyCode.D},         {KeybindAction.MenuButton, KeyCode.Escape},          
-        {KeybindAction.Jump, KeyCode.Space},          {KeybindAction.Interact, KeyCode.E}
+        {KeybindAction.Jump, KeyCode.Space},          {KeybindAction.Interact, KeyCode.E},
+        {KeybindAction.MuteAudio, KeyCode.N},         {KeybindAction.MuteSpeech, KeyCode.M}
     };
 
     private static readonly Dictionary<AnalogValue, float> defaultAnalogValues = new Dictionary<AnalogValue, float>()

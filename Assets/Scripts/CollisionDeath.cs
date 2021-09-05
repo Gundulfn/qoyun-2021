@@ -8,5 +8,9 @@ public class CollisionDeath : MonoBehaviour
         {
             other.GetComponent<Player>().Die();
         }
+        else if(other.GetComponent<TeleportDevice>())
+        {
+            Destroy(other.gameObject);
+        }
     }
 }
