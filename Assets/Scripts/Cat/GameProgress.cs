@@ -16,7 +16,7 @@ public class GameProgress: MonoBehaviour
         instance = this;
         text.SetText("0/" + ALIVE_CAT_COUNT + " cat saved");
     }
-
+    
     public void IncreaseSavedCatCount()
     {
         if(savedCatCount + 1 >= ALIVE_CAT_COUNT)

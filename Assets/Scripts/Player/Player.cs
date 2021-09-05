@@ -62,13 +62,20 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
+        DisablePlayer();
+        
+        GameController.instance.MuteAllAudios();
+        
+        deathAnim.gameObject.SetActive(true);
+        StartCoroutine(GameController.instance.RestartGame(deathAnim[deathAnim.clip.name].length));
+    }
+
+    public void DisablePlayer()
+    {
         PausePlayer();
         playerInput.enabled = false;
         characterController.enabled = false;
         playerMovement.enabled = false;
-        
-        deathAnim.gameObject.SetActive(true);
-        StartCoroutine(GameController.instance.RestartGame(deathAnim[deathAnim.clip.name].length));
     }
 
     // Pause/Unpause player movement and interaction

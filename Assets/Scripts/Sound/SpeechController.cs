@@ -19,6 +19,9 @@ public class SpeechController: MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI transcriptText;
 
+    [SerializeField]
+    private GameObject speechPanelObj;
+
     void Start()
     {
         instance = this;
@@ -31,7 +34,7 @@ public class SpeechController: MonoBehaviour
         beforeGameStartText = textParts[1];
         afterGameStartText = textParts[0];
 
-        if(FindObjectOfType<GameController>().isItfirstGame)
+        if(GameController.isItfirstGame)
         {
             aud.Play();
             transcriptText.SetText(beforeGameStartText);
@@ -42,12 +45,29 @@ public class SpeechController: MonoBehaviour
         }
     }
 
+    // Note: Temporary Code
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            speechPanelObj.SetActive(!speechPanelObj.activeSelf);
+        }
+    }
+
     public void StartInGameSpeech()
     {
-        aud.clip = afterGameStartClip;
-        aud.Play();
+        if(aud.clip != afterGameStartClip)
+        {
+            aud.clip = afterGameStartClip;
+            aud.Play();
 
-        transcriptText.SetText(afterGameStartText);
+            transcriptText.SetText(afterGameStartText);
+        }
+    }
+
+    public void StopSpeech()
+    {
+        aud.Stop();
     }
 
     public void SetSpeechMuteState()

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameController: MonoBehaviour
 {
     public static GameController instance;
-    public bool isItfirstGame = true; 
+    public static bool isItfirstGame = true; 
 
     [SerializeField]
     private Animation timeOutLoseAnim;
@@ -15,19 +15,29 @@ public class GameController: MonoBehaviour
         instance = this;
     }
 
+    public void StartGame()
+    {
+        if(isItfirstGame)
+        {
+            isItfirstGame = false;
+        }
+
+        SpeechController.instance.StartInGameSpeech();
+        Countdown.StartCountdown();
+    }
+
     public IEnumerator RestartGame(float time)
     {
         yield return new WaitForSeconds(time);
-
-        isItfirstGame = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
     }
 
-    // Couldn't decide how to finish the game, open to ideas
     // This function is attached to EndButton in GadgetUI object
     public void GameWon()
     {
-
+        FindObjectOfType<Player>().DisablePlayer();
+        Teleportation.instance.TeleportToHome();
+        MuteAllAudios();
     }
 
     // Time-out lose
@@ -38,5 +48,21 @@ public class GameController: MonoBehaviour
 
         timeOutLoseAnim.gameObject.SetActive(true);
         StartCoroutine(RestartGame(timeOutLoseAnim[timeOutLoseAnim.clip.name].length));
+    }
+
+    public IEnumerator PassToCreditsScene()
+    {
+        yield return new WaitForSeconds(1f);
+        SceneManager.LoadScene("CreditsScene", LoadSceneMode.Single);
+    }
+
+    public void MuteAllAudios()
+    {
+        AudioSource[] auds = FindObjectsOfType<AudioSource>();
+
+        for(int i = 0; i < auds.Length; i++)
+        {
+            auds[i].mute = true;
+        }
     }
 }    

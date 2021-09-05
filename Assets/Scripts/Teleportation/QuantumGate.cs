@@ -16,6 +16,7 @@ public class QuantumGate : MonoBehaviour
             {
                 UIHandler.instance.OnGadgetUIKeyDown();
                 Teleportation.instance.TeleportToLocation(gate.position + Vector3.up, player);
+                GameController.instance.StartGame();
             });    
     }
 }

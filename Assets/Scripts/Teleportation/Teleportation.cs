@@ -1,9 +1,11 @@
 using UnityEngine;
+using System.Collections;
 
 public class Teleportation: MonoBehaviour
 {
     public static Teleportation instance;
-    
+    private bool cutEffectAnim;
+
     public bool canTeleport
     {
         get;
@@ -26,12 +28,6 @@ public class Teleportation: MonoBehaviour
     {
         if(canTeleport)
         {         
-            //If countdowm hasn't started, it means it's player's first teleportation
-            if(!Countdown.countdowmStarted)
-            {
-                Countdown.StartCountdown();
-            }
-
             teleportEffectAnim.Play();
 
             // Saving for late teleport, look "Teleport" function 
@@ -42,11 +38,26 @@ public class Teleportation: MonoBehaviour
         }
     }
     
+    public void TeleportToHome()
+    {
+        teleportEffectAnim.Play();
+        cutEffectAnim = true;
+    }
+
     // "TeleportEffect" Animation Functions
     // To teleport after flashing effect at Animation
     public void Teleport()
     {
-        teleporter.position = pos;
+        if(cutEffectAnim)
+        {
+            teleportEffectAnim[teleportEffectAnim.clip.name].speed = 0;
+
+            StartCoroutine(GameController.instance.PassToCreditsScene());
+        }
+        else
+        {
+            teleporter.position = pos;
+        }
     }
 
     public void AllowTeleport()
