@@ -46,6 +46,8 @@ public class GameController: MonoBehaviour
         FindObjectOfType<InteractionController>().enabled = false;
         Teleportation.instance.DisableTeleport();
 
+        MuteAllAudios(timeOutLoseAnim.GetComponent<AudioSource>());
+
         timeOutLoseAnim.gameObject.SetActive(true);
         StartCoroutine(RestartGame(timeOutLoseAnim[timeOutLoseAnim.clip.name].length));
     }
@@ -56,13 +58,16 @@ public class GameController: MonoBehaviour
         SceneManager.LoadScene("CreditsScene", LoadSceneMode.Single);
     }
 
-    public void MuteAllAudios()
+    public void MuteAllAudios(AudioSource expectedAud = null)
     {
         AudioSource[] auds = FindObjectsOfType<AudioSource>();
 
         for(int i = 0; i < auds.Length; i++)
         {
-            auds[i].mute = true;
+            if(auds[i] != expectedAud)
+            {
+                auds[i].mute = true;
+            }
         }
     }
 }    

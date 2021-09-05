@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class SoundController: MonoBehaviour
 {
     private static bool muteAud;
@@ -10,7 +11,7 @@ public class SoundController: MonoBehaviour
         aud = GetComponent<AudioSource>();
     }
 
-    public void Play(AudioClip clip)
+    public void Play(AudioClip clip = null)
     {
         if(!aud.isPlaying)
         {
@@ -18,11 +19,15 @@ public class SoundController: MonoBehaviour
         }
     }
 
-    public void PlayImmediately(AudioClip clip)
+    public void PlayImmediately(AudioClip clip = null)
     {
         if(!muteAud)
         {
-            aud.clip = clip;
+            if(clip)
+            {
+                aud.clip = clip;
+            }
+            
             aud.Play();
         }
     }

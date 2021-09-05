@@ -17,11 +17,19 @@ public class Teleportation: MonoBehaviour
     private Transform teleporter;
     private Vector3 pos;
 
+    private AudioSource aud;
+
+    [SerializeField]
+    private AudioClip teleportSound;
+
     void Start()
     {
         instance = this;
         teleportEffectAnim = GetComponent<Animation>();
+        aud = GetComponent<AudioSource>();
+
         canTeleport = true;
+
     }
 
     public void TeleportToLocation(Vector3 pos, Transform teleporter)
@@ -33,6 +41,9 @@ public class Teleportation: MonoBehaviour
             // Saving for late teleport, look "Teleport" function 
             this.teleporter = teleporter;
             this.pos = pos;
+
+            aud.clip = teleportSound;
+            aud.Play();
 
             DisableTeleport();
         }

@@ -9,6 +9,12 @@ public class Scan: MonoBehaviour
 
     public static int info = 0;
 
+    [SerializeField]
+    private SoundController soundController;
+
+    [SerializeField]
+    private AudioClip scanSound;
+
     public IEnumerator WriteScanResult()
     {
         if(!text)
@@ -17,6 +23,8 @@ public class Scan: MonoBehaviour
             buttonObj = transform.GetChild(0).gameObject;
         }
 
+        soundController.Play(scanSound);
+        
         string result = "Scanning";
         
         for(int i = 0; i < 3; i++)

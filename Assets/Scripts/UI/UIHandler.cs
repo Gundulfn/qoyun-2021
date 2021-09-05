@@ -19,7 +19,6 @@ public class UIHandler: MonoBehaviour
     public void OnGadgetUIKeyDown()
     {
         gadgetUI.SetGadgetActivity();
-        crosshairObj.SetActive(!gadgetUI.enabled);
     }
 
     public void SetScanText()
@@ -42,6 +41,7 @@ public class UIHandler: MonoBehaviour
     public void SetCursorState(bool isUIActive)
     {
         Cursor.visible = isUIActive;
+        crosshairObj.SetActive(!isUIActive);
 
         if (Cursor.visible)
         {

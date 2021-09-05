@@ -5,9 +5,15 @@ public class Cat: MonoBehaviour, Interactable
     [SerializeField]
     private GameObject aliveCatModel, deadCatModel;
     
+    [SerializeField]
+    private SoundController soundController;
+
+    [SerializeField]
+    private AudioClip meowClip;
+
     private bool isCatDead;
     private int connectedGateNo;
-
+    
     public void SetCatStatus(bool isCatDead, int connectedGateNo)
     {
         this.isCatDead = isCatDead;
@@ -27,8 +33,8 @@ public class Cat: MonoBehaviour, Interactable
         else
         {
             GameProgress.instance.IncreaseSavedCatCount();
-            
-            // add meow sound later 
+            soundController.Play(meowClip);
+
             Destroy(gameObject);
         }
     }
