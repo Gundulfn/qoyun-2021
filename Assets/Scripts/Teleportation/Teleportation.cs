@@ -18,7 +18,7 @@ public class Teleportation: MonoBehaviour
     private Vector3 pos;
     private UniverseCode universeCode;
 
-    private AudioSource aud;
+    private SoundController soundController;
 
     [SerializeField]
     private Sunlight sunLight;
@@ -30,7 +30,7 @@ public class Teleportation: MonoBehaviour
     {
         instance = this;
         teleportEffectAnim = GetComponent<Animation>();
-        aud = GetComponent<AudioSource>();
+        soundController = GetComponent<SoundController>();
 
         canTeleport = true;
 
@@ -47,8 +47,7 @@ public class Teleportation: MonoBehaviour
             this.pos = pos;
             this.universeCode = universeCode;
 
-            aud.clip = teleportSound;
-            aud.Play();
+            soundController.Play(teleportSound);
 
             DisableTeleport();
         }
