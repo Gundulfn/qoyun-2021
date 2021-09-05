@@ -6,6 +6,9 @@ public class QuantumGate : MonoBehaviour
     [SerializeField]
     private Transform player, gate;
 
+    [SerializeField]
+    private UniverseCode universeCode;
+
     private Button button;
 
     void Start()
@@ -15,7 +18,7 @@ public class QuantumGate : MonoBehaviour
             () => 
             {
                 UIHandler.instance.OnGadgetUIKeyDown();
-                Teleportation.instance.TeleportToLocation(gate.position + Vector3.up, player);
+                Teleportation.instance.TeleportToLocation(gate.position + Vector3.up, player, universeCode);
                 GameController.instance.StartGame();
             });    
     }

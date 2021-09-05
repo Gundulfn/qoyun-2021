@@ -16,8 +16,12 @@ public class Teleportation: MonoBehaviour
 
     private Transform teleporter;
     private Vector3 pos;
+    private UniverseCode universeCode;
 
     private AudioSource aud;
+
+    [SerializeField]
+    private Sunlight sunLight;
 
     [SerializeField]
     private AudioClip teleportSound;
@@ -32,7 +36,7 @@ public class Teleportation: MonoBehaviour
 
     }
 
-    public void TeleportToLocation(Vector3 pos, Transform teleporter)
+    public void TeleportToLocation(Vector3 pos, Transform teleporter, UniverseCode universeCode = UniverseCode.None)
     {
         if(canTeleport)
         {         
@@ -41,6 +45,7 @@ public class Teleportation: MonoBehaviour
             // Saving for late teleport, look "Teleport" function 
             this.teleporter = teleporter;
             this.pos = pos;
+            this.universeCode = universeCode;
 
             aud.clip = teleportSound;
             aud.Play();
@@ -68,6 +73,11 @@ public class Teleportation: MonoBehaviour
         else
         {
             teleporter.position = pos;
+
+            if(universeCode != UniverseCode.None)
+            {
+                sunLight.ChangeLightColor(universeCode);
+            }
         }
     }
 
