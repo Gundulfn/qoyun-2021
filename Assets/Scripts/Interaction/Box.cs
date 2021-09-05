@@ -2,15 +2,22 @@
 
 public class Box : MonoBehaviour, Interactable
 {
-    [SerializeField]
     private GameObject catObj;
+    private Animation anim;
+
+    void Start()
+    {
+        catObj = transform.GetChild(0).gameObject;
+        catObj.SetActive(false);
+
+        anim = GetComponent<Animation>();
+    }
 
     public void Interact(object obj = null)
     {
+        anim.Play();
         catObj.SetActive(true);
         catObj.transform.parent = null;
-        
-        Destroy(gameObject);
     }
 
     public bool IsInteractable()

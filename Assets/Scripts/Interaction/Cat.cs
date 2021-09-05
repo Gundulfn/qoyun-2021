@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Cat: MonoBehaviour, Interactable
 {
+    [SerializeField]
+    private GameObject aliveCatModel, deadCatModel;
+    
     private bool isCatDead;
     private int connectedGateNo;
 
@@ -10,7 +13,8 @@ public class Cat: MonoBehaviour, Interactable
         this.isCatDead = isCatDead;
         this.connectedGateNo = connectedGateNo;
 
-        // Set model depending to "isCatDead"
+        aliveCatModel.SetActive(!isCatDead);
+        deadCatModel.SetActive(isCatDead);
     }
 
     public void Interact(object obj = null)
