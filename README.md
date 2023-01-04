@@ -1,5 +1,5 @@
 # qoyun-2021
-Q'Oyun 2021 Hackathonu 8.Grup
+Q'Oyun 2021 Kuantum Oyun Hackathonu, 8.Grup
 
 # Kontroller:
 - Yürüme: W-A-S-D
